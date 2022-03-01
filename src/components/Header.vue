@@ -7,7 +7,7 @@
       <div class="search-bar">
         <form class="search-form">
           <font-awesome-icon icon="search" />
-          <input type="search" class="search-input">
+          <input type="search" class="search-input" placeholder="Buscar...">
         </form>
       </div>
       <div class="links-list">
