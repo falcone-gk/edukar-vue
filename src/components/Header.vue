@@ -6,15 +6,24 @@
       </div>
       <div class="search-bar">
         <form class="search-form">
+          <font-awesome-icon icon="search" />
           <input type="search" class="search-input">
         </form>
       </div>
       <div class="links-list">
-        <ul>
-          <li>Blog</li>
-          <li>Forum</li>
-          <li>Login</li>
-          <li>Registrarse</li>
+        <ul class="nav-list">
+          <li class="nav-list-item">
+            <a class="nav-list-item-link" href="#"> Blog</a>
+          </li>
+          <li class="nav-list-item">
+            <a class="nav-list-item-link" href="#"> Forum</a>
+          </li>
+          <li class="nav-list-item">
+            <a class="nav-list-item-link" href="#"> Login</a>
+          </li>
+          <li class="nav-list-item">
+            <a class="nav-list-item-link" href="#"> Registrarse</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -38,21 +47,29 @@ nav {
 .logo img {
   height: 50px;
   width: 50px;
+  border-radius: 50%;
 }
 .search-bar {
-  flex: .5 0 150px;
+  display: flex;
+  flex: 1 0 auto;
 }
 .search-form {
   position: relative;
-  width: 350px;
+  flex: .5 0 auto;
+  min-width: 250px;
   height: 40px;
   border-radius: 40px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   background: #fff;
-  transition: all .8s ease;
+  transition: all .8s ease-in-out;
 }
 .search-form:hover {
-  width: 100%;
+  flex-grow: .75;
+}
+.fa-search {
+  position: absolute;
+  top: 12px;
+  left: 10px
 }
 .search-input {
   position: absolute;
@@ -68,16 +85,37 @@ nav {
   outline: none;
   transition: all .8s ease;
 }
-.links-list {
-  margin-left: auto;
-}
-ul {
+.nav-list {
   list-style-type: none;
   padding: 0;
 }
-li {
+.nav-list-item {
   display: inline-block;
   margin: 0 1em;
   color: white;
 }
+.nav-list-item-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+.nav-list-item-link:hover {
+  color: white;
+}
+.nav-list-item-link::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-list-item-link:hover::before {
+  transform: scaleX(1);
+}
+
 </style>
