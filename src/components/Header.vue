@@ -56,7 +56,7 @@ nav {
 .search-form {
   position: relative;
   flex: .5 0 auto;
-  min-width: 250px;
+  min-width: 135px;
   height: 40px;
   border-radius: 40px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
