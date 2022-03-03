@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 // Vue3 mq
-import { Vue3Mq } from "vue3-mq"
+import { Vue3Mq } from 'vue3-mq'
 
 // FontAwesome plugin
 import { library } from '@fortawesome/fontawesome-svg-core'
