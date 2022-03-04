@@ -4,30 +4,30 @@
       <div class="logo">
         <img src="@/assets/edukar_logo.jpg" alt="logo">
       </div>
-      <div class="search-bar">
-        <form class="search-form">
+      <div class="search-bar mobile-search">
+        <form class="search-form mobile-form">
           <font-awesome-icon icon="search" />
-          <input type="search" class="search-input" placeholder="Buscar...">
+          <input type="search" class="search-input mobile-input" placeholder="Buscar...">
         </form>
       </div>
-      <div class="menu-bar">
+      <div class="menu-bar mobile-menu-bar">
         <button @click="toggleMenuBar">
           <font-awesome-icon icon="bars" />
         </button>
       </div>
-      <div class="links-list">
-        <ul class="nav-list">
-          <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Blog</a>
+      <div class="mobile-links-list">
+        <ul class="mobile-nav-list">
+          <li class="mobile-nav-list-item">
+            <a class="mobile-nav-list-item-link" href="#"> Blog</a>
           </li>
-          <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Forum</a>
+          <li class="mobile-nav-list-item">
+            <a class="mobile-nav-list-item-link" href="#"> Forum</a>
           </li>
-          <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Login</a>
+          <li class="mobile-nav-list-item">
+            <a class="mobile-nav-list-item-link" href="#"> Login</a>
           </li>
-          <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Registrarse</a>
+          <li class="mobile-nav-list-item">
+            <a class="mobile-nav-list-item-link" href="#"> Registrarse</a>
           </li>
         </ul>
       </div>
@@ -40,8 +40,8 @@ export default {
   name: 'HeaderMobile',
   methods: {
     toggleMenuBar () {
-      const menuBar = [...document.getElementsByClassName('links-list')][0]
-      menuBar.classList.toggle('links-list-shown')
+      const menuBar = [...document.getElementsByClassName('mobile-links-list')][0]
+      menuBar.classList.toggle('mobile-links-list-shown')
     }
   }
 }
@@ -51,14 +51,15 @@ export default {
 nav {
   position: relative;
   padding: .4em 1em;
+  z-index: 999;
 }
-.search-form {
+.mobile-form {
   flex: 1 0 auto;
 }
-.search-form:focus-within {
+.mobile-form:focus-within {
   border: 2px solid rgb(0, 162, 255);
 }
-.menu-bar button {
+.mobile-menu-bar button {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -69,7 +70,7 @@ nav {
 .fa-bars {
   color: white;
 }
-.links-list {
+.mobile-links-list {
   transform: scale(1, 0);
   position: absolute;
   top: 100%;
@@ -79,20 +80,20 @@ nav {
   transform-origin: top;
   transition: all .3s ease-in-out;
 }
-.links-list-shown {
+.mobile-links-list-shown {
   transform: scale(1, 1)
 }
-.nav-list {
+.mobile-nav-list {
   list-style-type: none;
   padding: 0;
 }
-.nav-list-item {
+.mobile-nav-list-item {
   display: flex;
   position: relative;
   width: 100vw;
   padding: 10px 0;
 }
-.nav-list-item::before {
+.mobile-nav-list-item::before {
   content: "";
   position: absolute;
   top: 0;
@@ -100,7 +101,7 @@ nav {
   height: 2px;
   background-color: white;
 }
-.nav-list-item-link {
+.mobile-nav-list-item-link {
   margin: 0 auto;
   color: white;
   text-decoration: none;

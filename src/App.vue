@@ -1,17 +1,18 @@
 <template>
   <HeaderNav/>
-  <HelloWorld/>
+  <div class="container" :class="mq">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 
 import HeaderNav from '@/components/Header'
-import HelloWorld from '@/components/HelloWorld'
 
 export default {
+  inject: ['mq'],
   components: {
-    HeaderNav,
-    HelloWorld
+    HeaderNav
   }
 }
 </script>
@@ -23,6 +24,19 @@ export default {
   box-sizing: border-box;
   font-family: 'Work Sans', sans-serif;
 }
+.container {
+  display: flex;
+  gap: .5em;
+  padding: 0 15px;
+  margin-top: 1em;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container.xs { padding: 0 5px }
+.container.smMinus { flex-direction: column }
+.container.mdPlus { width: 750px }
+.container.lgPlus { width: 970px }
+.container.xlPlus { width: 1170px }
 nav {
   display: flex;
   align-items: center;

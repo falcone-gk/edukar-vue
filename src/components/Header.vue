@@ -6,7 +6,7 @@
         <img src="@/assets/edukar_logo.jpg" alt="logo">
       </div>
       <div class="search-bar">
-        <form class="search-form">
+        <form class="search-form animated-form">
           <font-awesome-icon icon="search" />
           <input type="search" class="search-input" placeholder="Buscar...">
         </form>
@@ -14,16 +14,28 @@
       <div class="links-list">
         <ul class="nav-list">
           <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Blog</a>
+            <AnimatedLink
+            value="Blog"
+            color="white"
+            extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Forum</a>
+            <AnimatedLink
+            value="Forum"
+            color="white"
+            extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Login</a>
+            <AnimatedLink
+            value="Login"
+            color="white"
+            extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <a class="nav-list-item-link" href="#"> Registrarse</a>
+            <AnimatedLink
+            value="Registrarse"
+            color="white"
+            extra_class="nav-list-item-link"/>
           </li>
         </ul>
       </div>
@@ -33,16 +45,20 @@
 
 <script>
 import HeaderMobile from '@/components/headers/HeaderMobile'
+import AnimatedLink from '@/components/custom_elements/AnimatedLink'
 
 export default {
   name: 'HeaderNav',
   inject: ['mq'],
-  components: { HeaderMobile }
+  components: { HeaderMobile, AnimatedLink }
 }
 </script>
 
-<style scoped>
-.search-form:hover {
+<style>
+.animated-form {
+  transition: all .8s ease-in-out;
+}
+.animated-form:hover {
   flex-grow: .75;
 }
 .nav-list {
@@ -52,30 +68,5 @@ export default {
 .nav-list-item {
   display: inline-block;
   margin: 0 1em;
-  color: white;
 }
-.nav-list-item-link {
-  position: relative;
-  color: white;
-  text-decoration: none;
-}
-.nav-list-item-link:hover {
-  color: white;
-}
-.nav-list-item-link::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-.nav-list-item-link:hover::before {
-  transform: scaleX(1);
-}
-
 </style>
