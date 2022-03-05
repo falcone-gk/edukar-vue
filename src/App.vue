@@ -18,15 +18,22 @@ export default {
 </script>
 
 <style>
+:root {
+  --box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);;
+  --background-theme: #45526E;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Work Sans', sans-serif;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
 .container {
   display: flex;
-  gap: .5em;
+  gap: 1em;
   padding: 0 15px;
   margin-top: 1em;
   margin-right: auto;
@@ -34,13 +41,20 @@ export default {
 }
 .container.xs { padding: 0 5px }
 .container.smMinus { flex-direction: column }
+.container.smPlus { width: 560px }
 .container.mdPlus { width: 750px }
 .container.lgPlus { width: 970px }
 .container.xlPlus { width: 1170px }
+main {
+  flex: .66 1 0;
+}
+aside {
+  flex: .33 1 0;
+}
 nav {
   display: flex;
   align-items: center;
-  background-color: #45526E;
+  background-color: var(--background-theme);
   padding: .4em 4em;
   gap: 2em;
 }
@@ -61,7 +75,6 @@ nav {
   border-radius: 40px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
   background: #fff;
-  transition: all .8s ease-in-out;
 }
 .fa-search {
   position: absolute;

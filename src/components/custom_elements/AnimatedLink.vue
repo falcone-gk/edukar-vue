@@ -1,8 +1,8 @@
 <template>
-  <a :class="'animated-link' + ' ' + extra_class"
-  :href="link_to"
+  <router-link :class="'animated-link' + ' ' + extra_class"
+  :to="link_to"
   :style="cssProps"
-  > {{ value }} </a>
+  > {{ value }} </router-link>
 </template>
 
 <script>

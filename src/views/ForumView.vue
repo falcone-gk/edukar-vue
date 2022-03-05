@@ -2,6 +2,19 @@
   <main>
     <div class="section">
       <div class="section-header">
+        <h1>Bienvenido!</h1>
+      </div>
+      <div class="welcome">
+        <p>
+          Este es el foro EDUKAR, donde podrán compartir y ayudar a otros estudiantes con ejercicios, dudas,
+          consultas y resoluciones sobre problemas matemáticos y de ciencias.
+        </p>
+        <br>
+        <strong>Regístrate y se parte de esta comunidad estudiantil!!!</strong>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
         <h1>
           <AnimatedLink
           value="Nombre de Sección"
@@ -9,7 +22,7 @@
         </h1>
       </div>
       <div class="section-content">
-        <div class="content-row">
+        <div class="content-row" :class="mq" :style="getGridStyle">
           <div class="left-side">
             <h2>
               <AnimatedLink
@@ -19,55 +32,13 @@
           </div>
           <div class="row-info item1">
             <strong>Último post</strong>
-            <p>Ayuda con ...</p>
+            <p>ayuda en este problema</p>
           </div>
-          <div class="row-info item2">
+          <div v-if="mq.smPlus" class="row-info item2">
             <strong>Autor</strong>
             <p>falcone</p>
           </div>
-          <div class="row-info item3">
-            <strong>Publicado</strong>
-            <p>28-02-2022</p>
-          </div>
-        </div>
-        <div class="content-row">
-          <div class="left-side">
-            <h2>
-              <AnimatedLink
-              value="Razonamiento Matemático"
-              color="black"/>
-            </h2>
-          </div>
-          <div class="row-info item1">
-            <strong>Último post</strong>
-            <p>Ayuda con ...</p>
-          </div>
-          <div class="row-info item2">
-            <strong>Autor</strong>
-            <p>falcone</p>
-          </div>
-          <div class="row-info item3">
-            <strong>Publicado</strong>
-            <p>28-02-2022</p>
-          </div>
-        </div>
-        <div class="content-row">
-          <div class="left-side">
-            <h2>
-              <AnimatedLink
-              value="Razonamiento Matemático"
-              color="black"/>
-            </h2>
-          </div>
-          <div class="row-info item1">
-            <strong>Último post</strong>
-            <p>Ayuda con ...</p>
-          </div>
-          <div class="row-info item2">
-            <strong>Autor</strong>
-            <p>falcone</p>
-          </div>
-          <div class="row-info item3">
+          <div v-if="mq.lgPlus" class="row-info item3">
             <strong>Publicado</strong>
             <p>28-02-2022</p>
           </div>
@@ -75,45 +46,59 @@
       </div>
     </div>
   </main>
-  <aside>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum voluptas praesentium debitis est! Dignissimos impedit culpa dolor corporis. Facere ullam nesciunt dolores accusantium magnam excepturi? Commodi error et eius iure, nihil delectus nulla labore consequuntur velit natus earum laboriosam aperiam exercitationem ex reiciendis. Doloribus saepe fugiat ut quisquam adipisci ex.</p>
-  </aside>
+  <SideBar />
 </template>
 
 <script>
 
+import SideBar from '@/components/Sidebar'
 import AnimatedLink from '@/components/custom_elements/AnimatedLink'
 
 export default {
   name: 'ForumView',
-  components: { AnimatedLink }
+  inject: ['mq'],
+  components: { AnimatedLink, SideBar },
+  computed: {
+    getGridStyle () {
+      if (this.mq.lgPlus) {
+        return { '--grid-template-col': 'auto 190px 90px 125px' }
+      } else if (this.mq.smPlus) {
+        return { '--grid-template-col': 'auto 190px 90px' }
+      } else {
+        return { '--grid-template-col': 'auto 190px' }
+      }
+    }
+  }
 }
 </script>
 
 <style>
 main {
-  flex: 3 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.section {
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
 }
 .section-header {
   padding: 0 .8em;
   background-color: #117999;
+  border-radius: 5px;
 }
 .section-header h1 {
   flex-grow: 1;
   color: white;
   font-size: 1.5em;
-  font-weight: 500;
   line-height: 70px;
 }
 .content-row {
   display: grid;
   padding: 5px;
   border-bottom: 1px solid #cdebfd;
-  grid-template-columns: auto 190px 90px 125px;
+  grid-template-columns: var(--grid-template-col);
   grid-template-rows: 3em;
-  grid-template-areas:
-    "subsection head-item1 head-item2 head-item3"
-    "subsection value-item1 value-item2 value-item3"
 }
 .left-side {
   align-self: center;
@@ -121,7 +106,6 @@ main {
 .left-side h2 {
   display: flex;
   align-items: center;
-  font-weight: 500;
   font-size: 1em;
 }
 .left-side h2::before {
@@ -137,16 +121,17 @@ main {
   font-size: .8em;
 }
 .item1 {
-  grid-area: head-item1;
+  grid-column: 2 / 3;
 }
 .item2 {
-  grid-area: head-item2;
+  grid-column: 3 / 4;
 }
 .item3 {
-  grid-area: head-item3;
+  grid-column: 4 / 5;
 }
-aside {
-  background-color: rgb(24, 202, 113);
-  flex: 1 1 0;
+.welcome {
+  background-color: white;
+  padding: .5em;
+  border-radius: 5px;
 }
 </style>

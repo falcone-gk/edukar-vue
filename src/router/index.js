@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ForumView from '../views/ForumView.vue'
+import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'forum',
     component: ForumView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   }
 ]
 

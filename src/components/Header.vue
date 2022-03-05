@@ -23,12 +23,14 @@
             <AnimatedLink
             value="Forum"
             color="white"
+            link_to="/"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
             <AnimatedLink
             value="Login"
             color="white"
+            link_to="/login"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
@@ -44,7 +46,7 @@
 </template>
 
 <script>
-import HeaderMobile from '@/components/headers/HeaderMobile'
+import HeaderMobile from '@/components/HeaderMobile'
 import AnimatedLink from '@/components/custom_elements/AnimatedLink'
 
 export default {
@@ -56,7 +58,7 @@ export default {
 
 <style>
 .animated-form {
-  transition: all .8s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 .animated-form:hover {
   flex-grow: .75;
