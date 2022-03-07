@@ -46,10 +46,10 @@ h1, h2, h3, h4, h5, h6 {
 .container.lgPlus { width: 970px }
 .container.xlPlus { width: 1170px }
 main {
-  flex: .66 1 0;
+  flex: 2 1 0;
 }
 aside {
-  flex: .33 1 0;
+  flex: 1 1 0;
 }
 nav {
   display: flex;
