@@ -21,6 +21,7 @@ export default {
 :root {
   --box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);;
   --background-theme: #45526E;
+  --input-color: #18e0d0;
 }
 * {
   margin: 0;

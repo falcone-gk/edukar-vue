@@ -1,8 +1,7 @@
 <template>
   <div class="center-div">
-    <div class="div-header">
-      <button class="login-btn">Login</button>
-      <button class="signup-btn">Signup</button>
+    <div class="login-logo">
+      <img src="@/assets/edukar_logo.jpg" alt="logo">
     </div>
     <div class="form-login">
       <form>
@@ -29,7 +28,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .center-div {
   position: absolute;
   top:0;
@@ -39,31 +38,33 @@ export default {
   margin: auto;
   max-width: 320px;
   height: fit-content;
+  background-color: var(--background-theme);
   box-shadow: var(--box-shadow);
   border-radius: 5px;
 }
 .div-header {
   display: flex;
 }
-.login-btn, .signup-btn {
-  flex-grow: 1;
-  height: 50px;
-  background-color: white;
-  border: 1px solid rgb(148, 155, 156);
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
+.login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5em 0;
+}
+.login-logo img {
+  border-radius: 50%;
+  width: 25%;
 }
 .form-login {
-  padding: .5em;
+  padding: 0 .5em 2em .5em;
 }
 .form-login form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
 }
 .login-submit {
-  margin: 0 5em;
+  margin: 3em 5em 0 5em;
 }
 .btn-edukar {
   background-color: #FFFFFF;
@@ -83,7 +84,6 @@ export default {
   cursor: pointer;
   touch-action: manipulation;
 }
-
 .btn-edukar:hover {
   background-color: rgb(249,250,251);
 }
