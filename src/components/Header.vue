@@ -37,6 +37,7 @@
             <AnimatedLink
             value="Registrarse"
             color="white"
+            link_to="/register"
             extra_class="nav-list-item-link"/>
           </li>
         </ul>

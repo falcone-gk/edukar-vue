@@ -21,7 +21,6 @@ export default {
 .form-group {
   position: relative;
   height: fit-content;
-  margin: 1em;
 }
 /**These styles affects when there is no placeholder (there is text in input) */
 .label-control {

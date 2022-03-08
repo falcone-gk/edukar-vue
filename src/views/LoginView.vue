@@ -56,15 +56,16 @@ export default {
   width: 25%;
 }
 .form-login {
-  padding: 0 .5em 2em .5em;
+  padding: 2em .5em 2em .5em;
+  margin: 1em;
 }
 .form-login form {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 4em;
 }
 .login-submit {
-  margin: 3em 5em 0 5em;
+  margin: 0 5em 0 5em;
 }
 .btn-edukar {
   background-color: #FFFFFF;
