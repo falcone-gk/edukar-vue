@@ -5,11 +5,11 @@
     </div>
     <div class="form-login">
       <form>
-        <InputForm
+        <input-form
         type="text"
         label="Username o email"
         />
-        <InputForm
+        <input-form
         type="password"
         label="Contraseña"
         />

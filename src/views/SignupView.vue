@@ -107,6 +107,10 @@ export default {
   flex: .5 0 auto
 }
 .group_inputs.xs { flex-direction: column; gap: 3.5em; }
+.form-section textarea {
+  padding: .5em;
+  border-radius: 5px;
+}
 .register-submit {
   margin: 0 5em 0 5em;
 }

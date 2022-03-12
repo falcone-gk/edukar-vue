@@ -39,7 +39,7 @@ export default {
   display: block;
   width: 100%;
   height: 2px;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   background-color: var(--link-color);
   transform: scaleX(0);

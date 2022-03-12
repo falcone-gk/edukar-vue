@@ -42,7 +42,7 @@ export default {
   z-index: 2;
   color: white;
   background-color: transparent;
-  font-size: 12px;
+  font-size: 14px;
 }
 .form-control::placeholder {
   color: transparent;

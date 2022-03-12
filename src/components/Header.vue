@@ -14,27 +14,27 @@
       <div class="links-list">
         <ul class="nav-list">
           <li class="nav-list-item">
-            <AnimatedLink
+            <animated-link
             value="Blog"
             color="white"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <AnimatedLink
+            <animated-link
             value="Forum"
             color="white"
             link_to="/"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <AnimatedLink
+            <animated-link
             value="Login"
             color="white"
             link_to="/login"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
-            <AnimatedLink
+            <animated-link
             value="Registrarse"
             color="white"
             link_to="/register"
