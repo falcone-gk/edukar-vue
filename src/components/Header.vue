@@ -23,21 +23,21 @@
             <animated-link
             value="Forum"
             color="white"
-            link_to="/"
+            :link_to="{ name: 'forum' }"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
             <animated-link
             value="Login"
             color="white"
-            link_to="/login"
+            :link_to="{ name: 'login' }"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
             <animated-link
             value="Registrarse"
             color="white"
-            link_to="/register"
+            :link_to="{ name: 'register' }"
             extra_class="nav-list-item-link"/>
           </li>
         </ul>

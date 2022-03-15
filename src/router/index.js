@@ -8,22 +8,34 @@ const routes = [
   {
     path: '/',
     name: 'forum',
-    component: ForumView
+    component: ForumView,
+    meta: {
+      layout: 'ForumAppLayout'
+    }
   },
   {
     path: '/:section',
     name: 'section',
-    component: SectionView
+    component: SectionView,
+    meta: {
+      layout: 'ForumAppLayout'
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    meta: {
+      layout: 'ForumAppLayout'
+    }
   },
   {
     path: '/register',
     name: 'register',
-    component: SignupView
+    component: SignupView,
+    meta: {
+      layout: 'ForumAppLayout'
+    }
   }
 ]
 
