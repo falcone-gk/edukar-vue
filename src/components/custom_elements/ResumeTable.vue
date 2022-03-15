@@ -70,7 +70,7 @@ export default {
 .content-row {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   height: 70px;
   border-bottom: 1px solid #cdebfd;
 }
