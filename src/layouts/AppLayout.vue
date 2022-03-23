@@ -9,7 +9,7 @@ export default {
   name: 'AppLayout',
   data () {
     return {
-      layout: ''
+      layout: 'div'
     }
   },
   watch: {

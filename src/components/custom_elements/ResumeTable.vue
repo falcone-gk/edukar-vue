@@ -14,11 +14,16 @@
           <h2>
             <animated-link
             :value="subsection.name"
-            color="black"/>
+            color="black"
+            :link_to="{ name: 'subsection', params: { section: data.slug, subsection: subsection.slug } }"/>
           </h2>
         </div>
         <div class="right-side">
-          <div v-for="(col, i) in right_side" :class="'row-info '+ 'item' + (i+1)" :style="[getSize(col), showRowInfo(col.showSize)].join(';')" :key="i">
+          <div
+          v-for="(col, i) in right_side"
+          :class="'row-info '+ 'item' + (i+1)"
+          :style="[getSize(col), showRowInfo(col.showSize)].join(';')"
+          :key="i">
             <strong>{{ col.header }}</strong>
             <p>{{ subsection['item' + (i+1)] }}</p>
           </div>
@@ -36,7 +41,48 @@ export default {
   name: 'ResumeTable',
   inject: ['mq'],
   components: { AnimatedLink },
-  props: ['data', 'right_side'],
+  props: ['data', 'tableType'],
+  data () {
+    return {
+      right_side: {},
+      extra_info_nosub: [
+        {
+          header: 'Autor',
+          size: '90px',
+          showSize: 'smPlus'
+        },
+        {
+          header: 'Publicado',
+          size: '90px',
+          showSize: 'lgPlus'
+        }
+      ],
+      extra_info_sub: [
+        {
+          header: 'Últimpo post',
+          size: '190px',
+          showSize: 'smPlus'
+        },
+        {
+          header: 'Autor',
+          size: '90px',
+          showSize: 'smPlus'
+        },
+        {
+          header: 'Publicado',
+          size: '90px',
+          showSize: 'lgPlus'
+        }
+      ]
+    }
+  },
+  mounted () {
+    if (this.tableType === 'subsection') {
+      this.right_side = this.extra_info_sub
+    } else {
+      this.right_side = this.extra_info_nosub
+    }
+  },
   methods: {
     showRowInfo (size) {
       if (!this.mq[size]) {

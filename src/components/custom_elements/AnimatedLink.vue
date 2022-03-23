@@ -1,8 +1,8 @@
 <template>
-  <router-link :class="'animated-link' + ' ' + extra_class"
-  :to="link_to"
+  <a :class="'animated-link' + ' ' + extra_class"
+  @click.prevent="pushTo"
   :style="cssProps"
-  > {{ value }} </router-link>
+  > {{ value }} </a>
 </template>
 
 <script>
@@ -11,8 +11,17 @@ export default {
   props: {
     value: { type: String },
     color: { type: String },
-    link_to: { type: String, default: '#' },
+    link_to: { type: [String, Object], default: '#' },
     extra_class: { type: String, default: '' }
+  },
+  methods: {
+    pushTo () {
+      if (typeof this.link_to === 'string') {
+        window.open(this.link_to, '_blank')
+      } else {
+        this.$router.push(this.link_to)
+      }
+    }
   },
   computed: {
     cssProps () {
@@ -28,6 +37,7 @@ export default {
 .animated-link {
   position: relative;
   color: var(--link-color);
+  cursor: pointer;
   text-decoration: none;
 }
 .animated-link:hover {

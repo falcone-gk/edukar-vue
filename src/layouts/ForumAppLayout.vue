@@ -11,6 +11,7 @@ import HeaderNav from '@/components/Header'
 
 export default {
   inject: ['mq'],
+  name: 'ForumAppLayout',
   components: {
     HeaderNav
   }

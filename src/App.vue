@@ -1,15 +1,20 @@
 <template>
-  <AppLayout>
-    <router-view></router-view>
-  </AppLayout>
+  <component :is="layout">
+    <router-view v-model:layoutName="layout"></router-view>
+  </component>
 </template>
 
 <script>
 
-import AppLayout from '@/layouts/AppLayout.vue'
+import { markRaw } from 'vue'
+import ForumAppLayout from '@/layouts/ForumAppLayout'
 
 export default {
-  components: { AppLayout }
+  data () {
+    return {
+      layout: markRaw(ForumAppLayout)
+    }
+  }
 }
 </script>
 

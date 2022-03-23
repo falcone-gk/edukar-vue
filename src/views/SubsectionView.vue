@@ -13,7 +13,7 @@ import SideBar from '@/components/Sidebar'
 import ResumeTable from '@/components/custom_elements/ResumeTable'
 
 export default {
-  name: 'SectionView',
+  name: 'SubsectionView',
   components: { SideBar, ResumeTable },
   props: ['layoutName'],
   data () {
@@ -22,7 +22,8 @@ export default {
     }
   },
   mounted () {
-    const url = 'api/forum/sections/' + this.$route.params.section
+    const url = 'api/forum/subsection/' + this.$route.params.subsection
+    console.log(url)
     axios
       .get(url)
       .then(response => {

@@ -13,62 +13,40 @@
         <strong>Regístrate y se parte de esta comunidad estudiantil!!!</strong>
       </div>
     </div>
-    <resume-table
-    :data="data"
-    :right_side="extra_info"/>
+    <ResumeTable v-for="(table, i) in no_sub_data" :key="'no_sub_' + i"
+    :data="table"/>
+
+    <ResumeTable v-for="(table, i) in with_sub_data" :key="'with_sub_' + i"
+    tableType="subsection"
+    :data="table"/>
   </main>
   <SideBar />
 </template>
 
 <script>
 
+import axios from 'axios'
 import SideBar from '@/components/Sidebar'
 import ResumeTable from '@/components/custom_elements/ResumeTable'
 
 export default {
   data () {
     return {
-      // Example data
-      data: {
-        id: 1,
-        name: 'Cursos',
-        slug: 'cursos',
-        subsection: [
-          {
-            name: 'Razonamiento Matemático',
-            item1: 'Ayuda con este ejercicio',
-            item2: 'falcone',
-            item3: '18-02-2022'
-          },
-          {
-            name: 'Aritmética',
-            item1: 'Ayuda con este ejercicio',
-            item2: 'falcone',
-            item3: '18-02-2022'
-          }
-        ]
-      },
-      extra_info: [
-        {
-          header: 'Últimpo post',
-          size: '190px',
-          showSize: 'smPlus'
-        },
-        {
-          header: 'Autor',
-          size: '90px',
-          showSize: 'smPlus'
-        },
-        {
-          header: 'Publicado',
-          size: '90px',
-          showSize: 'lgPlus'
-        }
-      ]
+      no_sub_data: {},
+      with_sub_data: {}
     }
   },
   name: 'ForumView',
-  components: { ResumeTable, SideBar }
+  components: { ResumeTable, SideBar },
+  props: ['layoutName'],
+  mounted () {
+    axios
+      .get('api/forum/sections/')
+      .then(response => {
+        this.no_sub_data = response.data.no_sub
+        this.with_sub_data = response.data.with_sub
+      })
+  }
 }
 </script>
 
