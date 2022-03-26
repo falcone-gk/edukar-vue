@@ -43,7 +43,8 @@ nav {
   display: flex;
   align-items: center;
   background-color: var(--background-theme);
-  padding: .4em 4em;
+  padding: 0 4em;
+  height: 66.8px;
   gap: 2em;
 }
 .logo img {

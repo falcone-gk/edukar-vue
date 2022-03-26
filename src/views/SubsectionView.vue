@@ -23,7 +23,6 @@ export default {
   },
   mounted () {
     const url = 'api/forum/subsection/' + this.$route.params.subsection
-    console.log(url)
     axios
       .get(url)
       .then(response => {

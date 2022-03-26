@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <input v-model="value" class="form-control" :type="type" :placeholder="label">
+    <input :value="inputValue" @input="handleInput" class="form-control" :type="type" :placeholder="label">
     <label class="label-control">{{ label }}</label>
   </div>
 </template>
@@ -8,12 +8,15 @@
 <script>
 export default {
   data () {
-    return {
-      value: ''
-    }
+    return {}
   },
   name: 'InputForm',
-  props: ['label', 'type']
+  props: ['inputValue', 'label', 'type'],
+  methods: {
+    handleInput (event) {
+      this.$emit('update:inputValue', event.target.value)
+    }
+  }
 }
 </script>
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store'
 import ForumView from '../views/ForumView.vue'
 import SectionView from '../views/SectionView.vue'
 import SubsectionView from '../views/SubsectionView.vue'

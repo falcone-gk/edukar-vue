@@ -8,23 +8,36 @@
         <input-form
         type="text"
         label="Username o email"
+        v-model:inputValue="username"
         />
         <input-form
         type="password"
         label="Contraseña"
+        v-model:inputValue="password"
         />
-        <input type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
+        <input @click.prevent="sentLoginForm" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
       </form>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, defineProps } from 'vue'
+import { useStore } from 'vuex'
 import InputForm from '@/components/custom_elements/InputForm'
 
-export default {
-  name: 'LoginView',
-  components: { InputForm }
+const store = useStore()
+const username = ref('')
+const password = ref('')
+
+const props = defineProps(['layoutName'])
+
+const sentLoginForm = function () {
+  const form = {
+    username: username.value,
+    password: password.value
+  }
+  store.dispatch('login', form)
 }
 </script>
 

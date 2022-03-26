@@ -4,18 +4,24 @@
   </component>
 </template>
 
-<script>
+<script setup>
 
 import { markRaw } from 'vue'
+import { useStore } from 'vuex'
 import ForumAppLayout from '@/layouts/ForumAppLayout'
 
-export default {
-  data () {
-    return {
-      layout: markRaw(ForumAppLayout)
-    }
+// Verifying if there is no username value in store and if not
+// Get the username using the token if it is in local storage.
+function getUsername () {
+  const store = useStore()
+  if (localStorage.getItem('token') && !store.state.username) {
+    store.dispatch('getUsernameByToken')
   }
 }
+getUsername() // <-- Running command before app creation.
+
+const layout = markRaw(ForumAppLayout)
+
 </script>
 
 <style>
