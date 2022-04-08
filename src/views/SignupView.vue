@@ -20,36 +20,29 @@
       <div class="group_inputs" :class="mq">
         <InputForm
         type="text"
-        label="Nombre de usuario*"
-        />
+        label="Nombre de usuario*"/>
         <InputForm
         type="email"
-        label="Email*"
-        />
+        label="Email*"/>
       </div>
       <div class="group_inputs" :class="mq">
         <InputForm
         type="text"
-        label="Nombres*"
-        />
+        label="Nombres*"/>
         <InputForm
         type="text"
-        label="Apellidos*"
-        />
+        label="Apellidos*"/>
       </div>
       <InputForm
       type="password"
-      label="Contraseña*"
-      />
+      label="Contraseña*"/>
       <InputForm
       type="password"
-      label="Confirmar contraseña*"
-      />
+      label="Confirmar contraseña*"/>
       <textarea name="about_me" id="about_me" rows="10" placeholder="Sobre mi"></textarea>
       <InputForm
       type="file"
-      label="Imagen de perfil"
-      />
+      label="Imagen de perfil"/>
       <input type="submit" class="btn-edukar register-submit" value="Registrarse">
     </form>
   </div>
@@ -97,21 +90,21 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 2em 0 2em 0;
-  gap: 3.5em;
 }
 .group_inputs {
   display: flex;
-  gap: 1em;
 }
 .group_inputs * {
   flex: .5 0 auto
 }
-.group_inputs.xs { flex-direction: column; gap: 3.5em; }
+.group_inputs.smPlus {gap: 1em}
+.group_inputs.xs { flex-direction: column;}
 .form-section textarea {
   padding: .5em;
+  margin: 1em 0;
   border-radius: 5px;
 }
 .register-submit {
-  margin: 0 5em 0 5em;
+  margin: 2em 5em 0 5em;
 }
 </style>

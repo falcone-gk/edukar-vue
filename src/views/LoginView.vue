@@ -15,7 +15,8 @@
         label="Contraseña"
         v-model:inputValue="password"
         />
-        <input @click.prevent="sentLoginForm" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
+        <p v-if="error" class="error-msg">El nombre de usuario o contraseña son incorrectos!</p>
+        <input @click.prevent="login" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
       </form>
     </div>
   </div>
@@ -24,20 +25,39 @@
 <script setup>
 import { ref, defineProps } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 import InputForm from '@/components/custom_elements/InputForm'
 
 const store = useStore()
+const router = useRouter()
+
 const username = ref('')
 const password = ref('')
+var error = ref(false)
 
 const props = defineProps(['layoutName'])
 
-const sentLoginForm = function () {
+const login = function () {
   const form = {
     username: username.value,
     password: password.value
   }
-  store.dispatch('login', form)
+  axios
+    .post('api/account/login', form)
+    .then(response => {
+      localStorage.setItem('token', response.data.token)
+      const data = {
+        username: form.username,
+        auth: true
+      }
+      store.commit('setUserAuth', data)
+      error.value = false
+      router.push('/')
+    })
+    .catch(() => {
+      error.value = true
+    })
 }
 </script>
 
@@ -75,10 +95,9 @@ const sentLoginForm = function () {
 .form-login form {
   display: flex;
   flex-direction: column;
-  gap: 4em;
 }
 .login-submit {
-  margin: 0 5em 0 5em;
+  margin: 2em 5em 0 5em;
 }
 .btn-edukar {
   background-color: #FFFFFF;
@@ -109,5 +128,9 @@ const sentLoginForm = function () {
 
 .btn-edukar:focus-visible {
   box-shadow: none;
+}
+.error-msg {
+  color: rgb(245, 125, 125);
+  font-size: 12px;
 }
 </style>

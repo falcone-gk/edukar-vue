@@ -19,18 +19,14 @@ const actions = {
     userForm.append('password', form.password)
     router.push({ name: 'login' })
   },
-  login ({ commit }, form) {
-    axios
-      .post('api/account/login', form)
-      .then(response => {
-        localStorage.setItem('token', response.data.token)
-        const data = {
-          username: form.username,
-          auth: true
-        }
-        commit('setUserAuth', data)
-        router.push('/')
-      })
+  logout ({ commit }) {
+    localStorage.removeItem('token')
+    const data = {
+      username: '',
+      isAuthenticated: false
+    }
+    commit('setUserAuth', data)
+    router.push({ name: 'login' })
   },
   getUsernameByToken ({ commit }) {
     const url = '/api/account/user/' + localStorage.getItem('token')

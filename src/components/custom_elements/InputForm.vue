@@ -24,11 +24,12 @@ export default {
 .form-group {
   position: relative;
   height: fit-content;
+  padding: 2em 0;
 }
 /**These styles affects when there is no placeholder (there is text in input) */
 .label-control {
   position: absolute;
-  top: -17px;
+  top: 15px;
   left: -1.2px;
   z-index: 1;
   font-size: 12px;
@@ -51,7 +52,7 @@ export default {
   color: transparent;
 }
 .form-control:placeholder-shown~.label-control {
-  top: 1px;
+  top: 30px;
   color: rgb(196, 200, 209);
   font-size: 14px;
 }
@@ -59,7 +60,7 @@ export default {
   border-bottom: 1px solid var(--input-color);
 }
 .form-control:focus~.label-control {
-  top: -17px;
+  top: 15px;
   color: var(--input-color);
   font-size: 12px;
 }

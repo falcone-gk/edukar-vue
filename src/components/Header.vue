@@ -17,6 +17,7 @@
             <animated-link
             value="Blog"
             color="white"
+            link_to="https://aedukar.blogspot.com/"
             extra_class="nav-list-item-link"/>
           </li>
           <li class="nav-list-item">
@@ -54,9 +55,9 @@
                 <font-awesome-icon icon="bell" />
                 <a href="#">Notificaciones</a>
               </li>
-              <li>
+              <li @click="store.dispatch('logout')">
                 <font-awesome-icon icon="sign-out-alt" />
-                <a href="#">Cerrar Sesión</a>
+                <a>Cerrar Sesión</a>
               </li>
             </ul>
           </li>

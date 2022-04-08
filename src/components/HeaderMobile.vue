@@ -18,16 +18,36 @@
       <div class="mobile-links-list">
         <ul class="mobile-nav-list">
           <li class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#"> Blog</a>
+            <a class="mobile-nav-list-item-link" href="https://aedukar.blogspot.com/" target="_blank">Blog</a>
           </li>
           <li class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#"> Forum</a>
+            <a class="mobile-nav-list-item-link" href="#">Forum</a>
           </li>
-          <li class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#"> Login</a>
+          <li v-if="!store.getters.isAuthenticated" class="mobile-nav-list-item">
+            <router-link to="{ name: login }" class="mobile-nav-list-item-link">Login</router-link>
           </li>
-          <li class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#"> Registrarse</a>
+          <li v-if="!store.getters.isAuthenticated" class="mobile-nav-list-item">
+            <a class="mobile-nav-list-item-link" href="#">Registrarse</a>
+          </li>
+          <li v-if="store.getters.isAuthenticated" class="mobile-nav-list-item user-mobile-item">
+            <div @click="toggleList" >
+              <a class="mobile-nav-list-item-link" href="#">{{ store.getters.getUsername }}</a>
+              <font-awesome-icon icon="caret-down" />
+            </div>
+            <ul class="dropdown-mobile">
+              <li>
+                <font-awesome-icon icon="id-badge" />
+                <a href="#">Perfil</a>
+              </li>
+              <li>
+                <font-awesome-icon icon="bell" />
+                <a href="#">Notificaciones</a>
+              </li>
+              <li>
+                <font-awesome-icon icon="sign-out-alt" />
+                <a href="#">Cerrar Sesión</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -35,16 +55,19 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: 'HeaderMobile',
-  methods: {
-    toggleMenuBar () {
-      const menuBar = [...document.getElementsByClassName('mobile-links-list')][0]
-      menuBar.classList.toggle('mobile-links-list-shown')
-    }
-  }
+<script setup>
+import { useStore } from 'vuex'
+
+const store = useStore()
+const toggleMenuBar = function () {
+  const menuBar = [...document.getElementsByClassName('mobile-links-list')][0]
+  menuBar.classList.toggle('mobile-links-list-shown')
 }
+const toggleList = function () {
+  const dropdown = [...document.getElementsByClassName('dropdown-mobile')][0]
+  dropdown.classList.toggle('show')
+}
+
 </script>
 
 <style scoped>
@@ -85,13 +108,44 @@ nav {
 }
 .mobile-nav-list {
   list-style-type: none;
+  cursor: pointer;
   padding: 0;
 }
-.mobile-nav-list-item {
+.mobile-nav-list-item, .user-mobile-item div {
   display: flex;
+  align-items: center;
   position: relative;
   width: 100vw;
-  padding: 10px 0;
+  height: 4em;
+}
+.user-mobile-item {
+  display: block;
+}
+.user-mobile-item div svg{
+  position: absolute;
+  right: 10px;
+  color: white
+}
+.dropdown-mobile {
+  background-color: var(--background-theme);
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: all .3s ease-in-out;
+}
+.dropdown-mobile li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 1em;
+  height: 40px;
+  border-top: 1px solid rgb(59, 65, 73);
+}
+.dropdown-mobile * {
+  color: white;
+  font-size: 14px;
+}
+.dropdown-mobile a{
+  text-decoration: none
 }
 .mobile-nav-list-item::before {
   content: "";
@@ -105,5 +159,8 @@ nav {
   margin: 0 auto;
   color: white;
   text-decoration: none;
+}
+.show {
+  transform: scale(1, 1)
 }
 </style>
