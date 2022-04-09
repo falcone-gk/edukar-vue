@@ -34,7 +34,7 @@ const router = useRouter()
 
 const username = ref('')
 const password = ref('')
-var error = ref(false)
+const error = ref(false)
 
 const props = defineProps(['layoutName'])
 
