@@ -20,7 +20,7 @@
     <div class="side-section">
       <h1>Video Tutorial</h1>
       <div class="video-tutorial">
-        <iframe src="https://www.youtube.com/embed/AuExsPHCIi0" title="YouTube video player" frameborder="0"
+        <iframe src="https://www.youtube.com/embed/0Wz_mYA2g70" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>
