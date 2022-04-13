@@ -20,42 +20,86 @@
       <div class="group_inputs" :class="mq">
         <InputForm
         type="text"
-        label="Nombre de usuario*"/>
+        label="Nombre de usuario*"
+        v-model="state.username"
+        :error="v.username.$errors[0]"/>
         <InputForm
         type="email"
-        label="Email*"/>
+        label="Email*"
+        v-model="state.email"
+        :error="v.email.$errors[0]"/>
       </div>
       <div class="group_inputs" :class="mq">
         <InputForm
         type="text"
-        label="Nombres*"/>
+        label="Nombres*"
+        v-model="state.firstname"
+        :error="v.firstname.$errors[0]"/>
         <InputForm
         type="text"
-        label="Apellidos*"/>
+        label="Apellidos*"
+        v-model="state.lastname"
+        :error="v.lastname.$errors[0]"/>
       </div>
       <InputForm
       type="password"
-      label="Contraseña*"/>
+      label="Contraseña*"
+      v-model="state.password.password"
+      :error="v.password.password.$errors[0]"/>
       <InputForm
       type="password"
-      label="Confirmar contraseña*"/>
+      label="Confirmar contraseña*"
+      v-model="state.password.confirm"
+      :error="v.password.confirm.$errors[0]"/>
       <textarea name="about_me" id="about_me" rows="10" placeholder="Sobre mi"></textarea>
       <InputForm
       type="file"
       label="Imagen de perfil"/>
-      <input type="submit" class="btn-edukar register-submit" value="Registrarse">
+      <input @click.prevent="submitForm" type="submit" class="btn-edukar register-submit" value="Registrarse">
     </form>
   </div>
 </template>
 
-<script>
+<script setup>
 
+import { reactive, computed, inject } from 'vue'
+import useValidate from '@vuelidate/core'
+import { required, email, sameAs } from '@vuelidate/validators'
 import InputForm from '@/components/custom_elements/InputForm'
 
-export default {
-  name: 'SignupView',
-  inject: ['mq'],
-  components: { InputForm }
+const mq = inject('mq')
+const state = reactive({
+  username: '',
+  email: '',
+  firstname: '',
+  lastname: '',
+  password: {
+    password: '',
+    confirm: ''
+  }
+})
+
+const rules = computed(() => {
+  return {
+    username: { required },
+    email: { required, email },
+    firstname: { required },
+    lastname: { required },
+    password: {
+      password: { required },
+      confirm: { required, sameAs: sameAs(state.password.password) }
+    }
+  }
+})
+
+const v = useValidate(rules, state)
+const submitForm = () => {
+  v.value.$validate()
+  if (!v.value.$error) {
+    alert('Form success')
+  } else {
+    alert('Form errors')
+  }
 }
 </script>
 

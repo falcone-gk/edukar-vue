@@ -4,7 +4,7 @@
       <input :value="modelValue" @input="handleInput" class="form-control" :type="type" :placeholder="label">
       <label class="label-control">{{ label }}</label>
     </div>
-    <span v-if="error" class="error-msg">Error message</span>
+    <span v-if="error" class="error-msg">{{ error.$message }}</span>
   </div>
 </template>
 
@@ -12,10 +12,8 @@
 
 import { defineProps, defineEmits, ref } from 'vue'
 
-const props = defineProps(['modelValue', 'label', 'type'])
+const props = defineProps(['modelValue', 'label', 'type', 'error'])
 const emit = defineEmits(['update:modelValue'])
-
-const error = ref(true)
 
 const handleInput = function (event) {
   emit('update:modelValue', event.target.value)
