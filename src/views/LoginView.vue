@@ -8,14 +8,14 @@
         <input-form
         type="text"
         label="Username o email"
-        v-model:inputValue="username"
+        v-model="username"
         />
         <input-form
         type="password"
         label="Contraseña"
-        v-model:inputValue="password"
+        v-model="password"
         />
-        <p v-if="error" class="error-msg">El nombre de usuario o contraseña son incorrectos!</p>
+        <span v-if="error" class="form-error">El nombre de usuario o contraseña son incorrectos!</span>
         <input @click.prevent="login" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
       </form>
     </div>
@@ -129,7 +129,7 @@ const login = function () {
 .btn-edukar:focus-visible {
   box-shadow: none;
 }
-.error-msg {
+.form-error {
   color: rgb(245, 125, 125);
   font-size: 12px;
 }
