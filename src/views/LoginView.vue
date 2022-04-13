@@ -8,56 +8,51 @@
         <input-form
         type="text"
         label="Username o email"
-        v-model="username"
-        />
+        v-model="state.username"
+        :error="v.username.$errors[0]"/>
         <input-form
         type="password"
         label="Contraseña"
-        v-model="password"
-        />
-        <span v-if="error" class="form-error">El nombre de usuario o contraseña son incorrectos!</span>
-        <input @click.prevent="login" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
+        v-model="state.password"
+        :error="v.password.$errors[0]"/>
+        <span v-if="store.getters.getLoginError" class="form-error">El nombre de usuario o contraseña son incorrectos!</span>
+        <input @click.prevent="submitForm" type="submit" class="btn-edukar login-submit" value="Iniciar sesión">
       </form>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
+import { reactive, computed, defineProps } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import axios from 'axios'
+import useValidate from '@vuelidate/core'
+import { required } from '@vuelidate/validators'
 import InputForm from '@/components/custom_elements/InputForm'
 
 const store = useStore()
 const router = useRouter()
-
-const username = ref('')
-const password = ref('')
-const error = ref(false)
-
 const props = defineProps(['layoutName'])
 
-const login = function () {
-  const form = {
-    username: username.value,
-    password: password.value
+const state = reactive({
+  username: '',
+  password: ''
+})
+
+const rules = computed(() => {
+  return {
+    username: { required },
+    password: { required }
   }
-  axios
-    .post('api/account/login', form)
-    .then(response => {
-      localStorage.setItem('token', response.data.token)
-      const data = {
-        username: form.username,
-        auth: true
-      }
-      store.commit('setUserAuth', data)
-      error.value = false
-      router.push('/')
-    })
-    .catch(() => {
-      error.value = true
-    })
+})
+
+const v = useValidate(rules, state)
+
+const submitForm = () => {
+  v.value.$validate()
+  if (!v.value.$error) {
+    store.dispatch('login', state)
+  }
 }
 </script>
 
@@ -97,7 +92,7 @@ const login = function () {
   flex-direction: column;
 }
 .login-submit {
-  margin: 2em 5em 0 5em;
+  margin: 1em 5em 0 5em;
 }
 .btn-edukar {
   background-color: #FFFFFF;
@@ -132,5 +127,6 @@ const login = function () {
 .form-error {
   color: rgb(245, 125, 125);
   font-size: 12px;
+  margin-top: 1em;
 }
 </style>
