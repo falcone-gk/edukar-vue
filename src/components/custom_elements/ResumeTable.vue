@@ -4,7 +4,7 @@
       <h1>
         <animated-link
         :value="data.name"
-        :link_to="{ name: 'section', params: { section: data.slug } }"
+        :link_to="headerLink()"
         color="white"/>
       </h1>
     </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="right-side">
           <div
-          v-for="(col, i) in right_side"
+          v-for="(col, i) in rightSide"
           :class="'row-info '+ 'item' + (i+1)"
           :style="[getSize(col), showRowInfo(col.showSize)].join(';')"
           :key="i">
@@ -33,68 +33,75 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
+import { ref, inject, defineProps } from 'vue'
+import { useRoute } from 'vue-router'
 import AnimatedLink from '@/components/custom_elements/AnimatedLink'
 
-export default {
-  name: 'ResumeTable',
-  inject: ['mq'],
-  components: { AnimatedLink },
-  props: ['data', 'tableType'],
-  data () {
-    return {
-      right_side: {},
-      extra_info_nosub: [
-        {
-          header: 'Autor',
-          size: '90px',
-          showSize: 'smPlus'
-        },
-        {
-          header: 'Publicado',
-          size: '90px',
-          showSize: 'lgPlus'
-        }
-      ],
-      extra_info_sub: [
-        {
-          header: 'Últimpo post',
-          size: '190px',
-          showSize: 'smPlus'
-        },
-        {
-          header: 'Autor',
-          size: '90px',
-          showSize: 'smPlus'
-        },
-        {
-          header: 'Publicado',
-          size: '90px',
-          showSize: 'lgPlus'
-        }
-      ]
-    }
+const mq = inject('mq')
+const props = defineProps(['data', 'tableType'])
+const route = useRoute()
+const rightSide = ref('')
+const extraInfoNoSub = [
+  {
+    header: 'Autor',
+    size: '90px',
+    showSize: 'smPlus'
   },
-  mounted () {
-    if (this.tableType === 'subsection') {
-      this.right_side = this.extra_info_sub
-    } else {
-      this.right_side = this.extra_info_nosub
-    }
+  {
+    header: 'Publicado',
+    size: '90px',
+    showSize: 'lgPlus'
+  }
+]
+const extraInfoSub = [
+  {
+    header: 'Últimpo post',
+    size: '190px',
+    showSize: 'smPlus'
   },
-  methods: {
-    showRowInfo (size) {
-      if (!this.mq[size]) {
-        return 'display: none'
-      }
-      return ''
-    },
-    getSize (item) {
-      return 'width: ' + item.size
-    }
+  {
+    header: 'Autor',
+    size: '90px',
+    showSize: 'smPlus'
+  },
+  {
+    header: 'Publicado',
+    size: '90px',
+    showSize: 'lgPlus'
+  }
+]
+
+const setRighSideValues = () => {
+  if (props.tableType === 'subsection') {
+    rightSide.value = extraInfoSub
+  } else {
+    rightSide.value = extraInfoNoSub
   }
 }
+setRighSideValues()
+
+const showRowInfo = (size) => {
+  if (!mq[size]) {
+    return 'display: none'
+  }
+  return ''
+}
+
+const getSize = (item) => {
+  return 'width: ' + item.size
+}
+
+const headerLink = () => {
+  if (route.name === 'subsection') {
+    return { name: 'subsection', params: { section: props.data.section, subsection: props.data.slug } }
+  }
+
+  const defaultRoute = { name: 'section', params: { section: props.data.slug } }
+  return defaultRoute
+}
+
 </script>
 
 <style>
