@@ -21,13 +21,13 @@
             <a class="mobile-nav-list-item-link" href="https://aedukar.blogspot.com/" target="_blank">Blog</a>
           </li>
           <li class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#">Forum</a>
+            <router-link :to="{ name: 'forum' }" class="mobile-nav-list-item-link">Forum</router-link>
           </li>
           <li v-if="!store.getters.isAuthenticated" class="mobile-nav-list-item">
-            <router-link to="{ name: login }" class="mobile-nav-list-item-link">Login</router-link>
+            <router-link :to="{ name: 'login' }" class="mobile-nav-list-item-link">Login</router-link>
           </li>
           <li v-if="!store.getters.isAuthenticated" class="mobile-nav-list-item">
-            <a class="mobile-nav-list-item-link" href="#">Registrarse</a>
+            <router-link :to="{ name: 'register' }" class="mobile-nav-list-item-link">Registrarse</router-link>
           </li>
           <li v-if="store.getters.isAuthenticated" class="mobile-nav-list-item user-mobile-item">
             <div @click="toggleList" >
@@ -156,9 +156,14 @@ nav {
   background-color: white;
 }
 .mobile-nav-list-item-link {
+  display: flex;
   margin: 0 auto;
   color: white;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 .show {
   transform: scale(1, 1)
