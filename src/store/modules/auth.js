@@ -16,12 +16,20 @@ const getters = {
 }
 
 const actions = {
-  async register (form) {
-    await axios.post('register', form)
-    const userForm = new FormData()
-    userForm.append('username', form.username)
-    userForm.append('password', form.password)
-    router.push({ name: 'login' })
+  register ({ commit }, form) {
+    axios
+      .post('api/account/create', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then((response) => {
+        console.log(response.data)
+        router.push({ name: 'login' })
+      })
+      .catch((error) => {
+        console.log(error.data)
+      })
   },
   login ({ commit }, form) {
     axios

@@ -5,6 +5,7 @@ import SectionView from '../views/SectionView.vue'
 import SubsectionView from '../views/SubsectionView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignupView from '../views/SignupView.vue'
+import VerifyEmailView from '../views/VerifyEmailView.vue'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: '/register',
     name: 'register',
     component: SignupView
+  },
+  {
+    path: '/email/:token',
+    name: 'verify',
+    component: VerifyEmailView
   }
 ]
 

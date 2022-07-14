@@ -31,7 +31,6 @@ import { required } from '@vuelidate/validators'
 import InputForm from '@/components/custom_elements/InputForm'
 
 const store = useStore()
-const router = useRouter()
 const props = defineProps(['layoutName'])
 
 const state = reactive({
